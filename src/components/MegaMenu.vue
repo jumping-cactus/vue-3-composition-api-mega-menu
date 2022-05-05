@@ -19,12 +19,11 @@
 
 <script setup>
 import { ref, defineProps, computed, onMounted, onUnmounted } from "vue";
+import { useMenuStore } from "@/stores/MenuStore";
+
+const menuStore = useMenuStore()
 
 const thisProps = defineProps({
-    'menuData': {
-        type: Array,
-        default: ()=>[]
-    },
     'curParentMenuId': {
         type: Number,
         default: 0
@@ -70,11 +69,11 @@ onUnmounted(() => {
 })
 
 const childRootMenuItems = computed(() => {
-  return thisProps.menuData.filter((menuItem) => menuItem.parent === thisProps.curParentMenuId);
+  return menuStore.menuData.filter((menuItem) => menuItem.parent === thisProps.curParentMenuId);
 });
 
 const childSubMenuItems = computed(() => {
-  return thisProps.menuData.filter((menuItem) => menuItem.parent === curChildMenuId.value);
+  return menuStore.menuData.filter((menuItem) => menuItem.parent === curChildMenuId.value);
 });
 
 const childItemHover = (activeChildMenuId) => {

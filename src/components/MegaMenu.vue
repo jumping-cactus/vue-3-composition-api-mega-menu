@@ -18,7 +18,7 @@
 </template>
 
 <script setup>
-import { ref, defineProps, computed, onMounted, onUnmounted } from "vue";
+import { ref, watch, defineProps, computed, onMounted, onUnmounted } from "vue";
 import { useMenuStore } from "@/stores/MenuStore";
 
 const menuStore = useMenuStore()
@@ -30,7 +30,15 @@ const thisProps = defineProps({
     }
 })
 
-const curChildMenuId = ref(0)
+const firstChildRootId = computed(() => {
+  return menuStore.menuData.filter((menuItem) => menuItem.parent === thisProps.curParentMenuId)[0].id;
+});
+
+const curChildMenuId = ref(firstChildRootId.value)
+
+watch(thisProps, async (newParentMenuId, oldParentMenuId) => {
+    curChildMenuId.value = firstChildRootId.value
+})
 
 const mouseData = ref({ 
     lastX: 0,
@@ -75,6 +83,8 @@ const childRootMenuItems = computed(() => {
 const childSubMenuItems = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === curChildMenuId.value);
 });
+
+
 
 const childItemHover = (activeChildMenuId) => {
     

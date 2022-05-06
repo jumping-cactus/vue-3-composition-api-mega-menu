@@ -33,7 +33,6 @@ const rootMenuItems = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === 0);
 });
 
-
 const menuClick = (menuItemId) => {
   // console.log(menuItemId)
   // always show if clicking on new parent menu item
@@ -44,7 +43,6 @@ const menuClick = (menuItemId) => {
   }
 
   curMenuId.value = menuItemId
-
     
 }
 
@@ -57,15 +55,14 @@ function debounce(func, timeout = 300){
 }
 
 function hideMegaMenu(){
-  console.log('hide mega menu');
-  console.log(doesMegaHaveMouse.value)
+  // console.log('hide mega menu');
+  // console.log(doesMegaHaveMouse.value)
   // if the mouse is not in the header, then hide the menu and set to closed
   if ( doesHeaderHaveMouse.value === false && doesMegaHaveMouse.value === false ) {
     isMegaMenuShown.value = !isMegaMenuShown.value
   }
 }
 const debounceMegaMenu = debounce( () => hideMegaMenu(), 700 );
-
 
 
 </script>

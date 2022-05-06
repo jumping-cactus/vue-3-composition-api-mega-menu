@@ -8,9 +8,13 @@
     { "id": 900129, "text": "ABC", "parent": 900124 },
     { "id": 900130, "text": "EFG", "parent": 900124 },
     { "id": 900131, "text": "XYZ", "parent": 900124 },
-    { "id": 900132, "text": "Service List", "parent": 900126 },
-    { "id": 900133, "text": "POC List", "parent": 900126 },
+    { "id": 900132, "text": "Service List 1", "parent": 900126 },
+    { "id": 900133, "text": "Service List 2", "parent": 900126 },
     { "id": 900134, "text": "Admin Page 1", "parent": 900129, "url": "https://google.com" },
     { "id": 900135, "text": "Admin Page 2", "parent": 900129 },
-    { "id": 900136, "text": "New Service 1", "parent": 900127 }
+    { "id": 900136, "text": "New Service 1", "parent": 900127 },
+    { "id": 900137, "text": "New Service 2", "parent": 900127 },
+    { "id": 900138, "text": "New Service 3", "parent": 900127 },
+    { "id": 900139, "text": "New Service 4", "parent": 900127 },
+    { "id": 900140, "text": "Modify Service 1", "parent": 900128 }
 ]

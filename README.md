@@ -2,6 +2,19 @@
 
 Orgiginal idea/code from vue.js 2 options api: https://github.com/themreza/mega-menu
 
+
+You can run it two ways:
+```sh
+npm run dev
+```
+or with docker
+```sh
+docker-compose build --no-cache
+docker-compose up -d --remove-orphans
+```
+
+
+
 This template should help get you started developing with Vue 3 in Vite.
 
 ## Recommended IDE Setup

@@ -1,0 +1,13 @@
+FROM node:16
+
+WORKDIR /usr/src/app/my-app
+
+COPY docker-package.json ./package.json
+
+RUN npm install
+RUN npm install --save vite
+RUN npm install --save pinia
+
+EXPOSE 8088
+
+CMD ["npm", "run", "dev"]

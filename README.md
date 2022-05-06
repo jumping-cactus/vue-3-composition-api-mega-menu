@@ -5,6 +5,7 @@ Orgiginal idea/code from vue.js 2 options api: https://github.com/themreza/mega-
 
 You can run it two ways:
 ```sh
+npm install
 npm run dev
 ```
 or with docker

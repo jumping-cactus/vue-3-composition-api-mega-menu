@@ -16,5 +16,7 @@
     { "id": 900137, "text": "New Service 2", "parent": 900127 },
     { "id": 900138, "text": "New Service 3", "parent": 900127 },
     { "id": 900139, "text": "New Service 4", "parent": 900127 },
-    { "id": 900140, "text": "Modify Service 1", "parent": 900128 }
+    { "id": 900140, "text": "Modify Service 1", "parent": 900128 },
+    { "id": 900141, "text": "CI Search", "parent": 900125 },
+    { "id": 900142, "text": "People Search", "parent": 900125 }
 ]

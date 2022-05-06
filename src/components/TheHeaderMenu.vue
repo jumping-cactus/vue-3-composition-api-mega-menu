@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="menu-container">
+    <div class="menu-container" @mouseenter="doesHeaderHaveMouse=true" @mouseleave="doesHeaderHaveMouse=false">
       <div class="logo">
         <img alt="Vue logo" class="logo" src="../assets/logo.svg" width="125" height="125" />
       </div>
-    
 
       <div class="items">
         <a class="item" v-for="menuItem in rootMenuItems" :key="menuItem.id" @click="menuClick(menuItem.id)">
@@ -13,7 +12,7 @@
       </div>
       <div class="icons"></div>
     </div>
-    <MegaMenu v-if="hideMegaMenu" :curParentMenuId=curMenuId />
+    <MegaMenu v-if="isMegaMenuShown" :curParentMenuId=curMenuId @mega-menu-mouse-leave="debounceMegaMenu" />
   </div>
 </template>
 
@@ -26,7 +25,10 @@ import { useMenuStore } from "@/stores/MenuStore";
 
 const menuStore = useMenuStore()
 const curMenuId = ref(0)
-const hideMegaMenu = ref(false)
+const isMegaMenuShown = ref(false)
+const doesHeaderHaveMouse = ref(false)
+
+
 
 const rootMenuItems = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === 0);
@@ -37,15 +39,33 @@ const menuClick = (menuItemId) => {
     // console.log(menuItemId)
     // always show if clicking on new parent menu item
     if ( curMenuId.value !== menuItemId ) {
-        hideMegaMenu.value = true
+        isMegaMenuShown.value = true
     } else {
-        hideMegaMenu.value = !hideMegaMenu.value
+        isMegaMenuShown.value = !isMegaMenuShown.value
     }
 
     curMenuId.value = menuItemId
 
     
 }
+
+function debounce(func, timeout = 300){
+  let timer;
+  return (...args) => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { func.apply(this, args); }, timeout);
+  };
+}
+function hideMegaMenu(){
+  // console.log('hide mega menu');
+  // console.log(doesHeaderHaveMouse.value)
+  // if the mouse is not in the header, then hide the menu and set to closed
+  if ( doesHeaderHaveMouse.value === false ) {
+    isMegaMenuShown.value = !isMegaMenuShown.value
+  }
+}
+const debounceMegaMenu = debounce(() => hideMegaMenu());
+
 
 
 </script>

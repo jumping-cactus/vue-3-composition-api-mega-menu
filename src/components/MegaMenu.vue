@@ -36,7 +36,7 @@ const firstChildRootId = computed(() => {
 
 const curChildMenuId = ref(firstChildRootId.value)
 
-watch(thisProps, async (newParentMenuId, oldParentMenuId) => {
+watch(thisProps, async () => {
     curChildMenuId.value = firstChildRootId.value
 })
 

@@ -30,12 +30,14 @@ const thisProps = defineProps({
     }
 })
 
+// default mega menu to first child
 const firstChildRootId = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === thisProps.curParentMenuId)[0].id;
 });
 
 const curChildMenuId = ref(firstChildRootId.value)
 
+// when user clicks new main header link, update mega menu
 watch(thisProps, async () => {
     curChildMenuId.value = firstChildRootId.value
 })
@@ -48,6 +50,7 @@ const mouseData = ref({
 
 })
 
+// used for css class
 const isActive = (key) => {
     return curChildMenuId.value === key;
 }
@@ -83,8 +86,6 @@ const childRootMenuItems = computed(() => {
 const childSubMenuItems = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === curChildMenuId.value);
 });
-
-
 
 const childItemHover = (activeChildMenuId) => {
     

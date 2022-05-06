@@ -1,5 +1,5 @@
 <template>
-    <div class="megamenu-wrapper" @mouseleave="$emit('megaMenuMouseLeave')">
+    <div class="megamenu-wrapper">
         <div class="main-categories">
             <div v-for="menuItem in childRootMenuItems" :key="menuItem.id" @mouseover="childItemHover(menuItem.id)" :class="['main-category', isActive(menuItem.id) ? 'active' : '']" >
                 
@@ -29,8 +29,6 @@ const thisProps = defineProps({
         default: 0
     }
 })
-
-const emit = defineEmits(['megaMenuMouseLeave'])
 
 const curChildMenuId = ref(0)
 

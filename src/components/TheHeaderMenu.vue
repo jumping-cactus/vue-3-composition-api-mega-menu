@@ -12,7 +12,7 @@
       </div>
       <div class="icons"></div>
     </div>
-    <MegaMenu v-if="isMegaMenuShown" :curParentMenuId=curMenuId @mega-menu-mouse-leave="debounceMegaMenu" />
+    <MegaMenu v-if="isMegaMenuShown" :curParentMenuId=curMenuId @mouseleave="doesMegaHaveMouse=false; debounceMegaMenu();" @mouseenter="doesMegaHaveMouse=true" />
   </div>
 </template>
 
@@ -27,8 +27,7 @@ const menuStore = useMenuStore()
 const curMenuId = ref(0)
 const isMegaMenuShown = ref(false)
 const doesHeaderHaveMouse = ref(false)
-
-
+const doesMegaHaveMouse = ref(false)
 
 const rootMenuItems = computed(() => {
   return menuStore.menuData.filter((menuItem) => menuItem.parent === 0);
@@ -36,15 +35,15 @@ const rootMenuItems = computed(() => {
 
 
 const menuClick = (menuItemId) => {
-    // console.log(menuItemId)
-    // always show if clicking on new parent menu item
-    if ( curMenuId.value !== menuItemId ) {
-        isMegaMenuShown.value = true
-    } else {
-        isMegaMenuShown.value = !isMegaMenuShown.value
-    }
+  // console.log(menuItemId)
+  // always show if clicking on new parent menu item
+  if ( curMenuId.value !== menuItemId ) {
+      isMegaMenuShown.value = true
+  } else {
+      isMegaMenuShown.value = !isMegaMenuShown.value
+  }
 
-    curMenuId.value = menuItemId
+  curMenuId.value = menuItemId
 
     
 }
@@ -56,15 +55,16 @@ function debounce(func, timeout = 300){
     timer = setTimeout(() => { func.apply(this, args); }, timeout);
   };
 }
+
 function hideMegaMenu(){
-  // console.log('hide mega menu');
-  // console.log(doesHeaderHaveMouse.value)
+  console.log('hide mega menu');
+  console.log(doesMegaHaveMouse.value)
   // if the mouse is not in the header, then hide the menu and set to closed
-  if ( doesHeaderHaveMouse.value === false ) {
+  if ( doesHeaderHaveMouse.value === false && doesMegaHaveMouse.value === false ) {
     isMegaMenuShown.value = !isMegaMenuShown.value
   }
 }
-const debounceMegaMenu = debounce(() => hideMegaMenu());
+const debounceMegaMenu = debounce( () => hideMegaMenu(), 700 );
 
 
 

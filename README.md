@@ -1,5 +1,8 @@
 # vue-3-composition-api-mega-menu
 
+Uses vite, vue.js 3, pinia, and composition api
+
+
 Orgiginal idea/code from vue.js 2 options api: https://github.com/themreza/mega-menu
 
 
